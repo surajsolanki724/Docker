@@ -26,17 +26,17 @@ answer : think about it
 7. ...
 
 # content
-docker installation 
-docker images
-docker container
-docker registry
-dockder customize image building
-docker networking
-docker volume
-docker enviroment varible
-dockerfile
-docker compose
-docker multi tier architecture...project
+1.docker installation 
+2.docker images
+3.docker container
+4.docker registry
+5.dockder customize image building
+6.docker networking
+7.docker volume
+8.docker enviroment varible
+9.dockerfile
+10.docker compose
+11.docker multi tier architecture...project
 
 
 
