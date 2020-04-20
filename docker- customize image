@@ -1,0 +1,31 @@
+#if you want share your customize container image to other guys or team 
+docker container -it centos /bin/bash
+
+#install software customize it
+yum install software_name
+yum install tree git -y
+
+#lets out this running container use"control+p+q"
+to check docker container ls
+
+#and then export some tar file of your cutomize container
+docker container export container_id > new_name.tar
+docker container export container_id -o <output_save> new_test_container.tar
+ls -lh #to check tar file
+
+#if you give your other team and import as a image and save one image in host machine
+docker image import name_test_container.tar  new_name_image
+docker image ls
+
+#then you run your cusomize container and use shell
+docker container run -it image_name /bin/bash
+
+
+#### if you want to make your customize image to your own system 
+#first your run container and then install some file software what you want then out this
+docker container commit --author "name_of_user" <if you want> -m<message> "this is new image" container_id new_test_image
+
+
+#run this new image
+docker image ls
+docker container run -it my_test_image  /bin/bash
