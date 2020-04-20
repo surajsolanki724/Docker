@@ -1,0 +1,35 @@
+# first thing we do here the port forwarding means how to expose docker container in the outside world 
+#simple call as port maping or PAT port adress translation
+
+#first create a container of nginx or httd or anything web server
+docker container run -dit --name container_name_own centos:latest<imga_name:version>
+
+#then find the ip adresss of container running
+docker container inspect container_id | grep IPAdress
+or simple docker container inspect container_id
+
+#then map the host machine any port which are not using and map to webserver port like 3600  send this to --> container_id :80 
+# host machine id_address:3600 to --> container_ip:80 
+docker container run -d <background_running> -p<port> 3600:80 --name conatiner_name_new  nginx<image_name>
+
+#to see port in host machine 
+netstat -nltp
+
+#to check ip of conatiner for access web browser now u=you can see your webserver 
+docker container inspect container_id | grep IPAdress
+
+#now how to install software into your container using shell if u r outside the container
+docker conatiner exec -it<intractive,shell> container_id  /bin/bash
+
+#if you want exit from container type "control+p+q"
+
+#you can change your container name
+docker container rename container_id new_ciontainer_name
+
+#if you want restart your container 
+docker container restart container_id
+
+
+
+
+docker container -p 
