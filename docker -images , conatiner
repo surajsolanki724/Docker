@@ -4,19 +4,41 @@ docker pull centos:8 <image_name:version>
 #to check image
 docker image
 
-#to run container using image 
+#to run container using image and then we run anything in this fully light weight os
+#respective os commands like if ubuntu then apt get
+#if redhat then yum install....anything
 docker run -t < it give u terminal> -i<interactive shell> centos:latest <imagename:version name>
 
 #to check container running
 docker ps
 
-#to exit from container or shutdown container
-exit
+#to show all container 
+docker ps -a
 
 # to run caontainer in background 
 docker run -d<daemon background dettach> -it centos<by default latest>
 
+#to attach inside docker
+docker attach name_conatainer
+
+#to exit from container or shutdown container
+exit
+
+#shutdown conatiner when u r outside in the conatiner
+docker stop container_name
+
+#to start container
+docker start conatiner_name
+
+#to remove conatiner (permanent remove)
+docker rm<remove> -f<forcefully when conatiner running> name of conatiner or id(first3 digit)
+
+#to use tag name when container running
+docker run -it  --name new_name centos<image name>
+
+
 #to check basesystem ram and cpu how much consume by docker u seen very less memory and very less resources docker consume
+#about 10-15 mb ram used to launch docker images
 free -ml
 lscpu
 
