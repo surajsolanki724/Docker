@@ -14,6 +14,8 @@ docker run -t < it give u terminal> -i<interactive shell> centos:latest <imagena
 #to check container running
 docker ps
 
+docker container ls
+
 #to show all container 
 docker ps -a
 
@@ -46,6 +48,22 @@ docker run -it  --name new_name centos<image name>
 #about 10-15 mb ram used to launch docker images
 free -ml
 lscpu
+
+#if you want to see your created container RAM,CPU and you see vey less memory cpu consume by the docker container
+docker container ls
+docker container stats
+
+#to insepect container about what is id, ip, ram,network all things about container we know here
+docker container inspect container_id
+
+#to find the all activities or logs 
+docker container logs container_id
+
+#to check what all processes running inside the container
+docker container top container_id
+#to cross check of the container servicess
+ps -aux
+
 
 #to check docker information and docker help for uses of commands
 docker info
