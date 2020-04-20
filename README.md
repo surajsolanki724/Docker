@@ -23,20 +23,25 @@ answer : think about it
 4. layer between dokcer conatiner and docker host called docker engine.
 5. docker provide us coplete environment which is required to host services like RAM,HD,OS,NETWORK
 6. 1 sec to boot and install and login ....this amazing beauty of docker 
-7. ...
+7. whenever you store data in docker conatiner is not permamnat ...its called ephemaral storage
+8 if u create volume and bind this docker container to Hard disk then data is save persistant
+9. docker work as platform as a service
+10. best thing is about docker-- provide isolation of application 
+11. life of docker container depend on running program if docker services stop then our server crash but we use kubernetes to manage docker 
+12...
 
 # content
-1.docker installation 
-2.docker images
-3.docker container
-4.docker registry
-5.dockder customize image building
-6.docker networking
-7.docker volume
-8.docker enviroment varible
-9.dockerfile
-10.docker compose
-11.docker multi tier architecture...project
+1. docker installation 
+2. docker images
+3. docker container
+4. docker registry
+5. docker customize image building
+6. docker networking
+7. docker volume
+8. docker enviroment varible
+9. dockerfile
+10. docker compose
+11. docker multi tier architecture...project
 
 
 
