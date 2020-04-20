@@ -9,6 +9,8 @@ docker image
 #if redhat then yum install....anything
 docker run -t < it give u terminal> -i<interactive shell> centos:latest <imagename:version name>
 
+#we also use escape sequence to dettach container " control+p+q"
+
 #to check container running
 docker ps
 
@@ -33,6 +35,9 @@ docker start conatiner_name
 #to remove conatiner (permanent remove)
 docker rm<remove> -f<forcefully when conatiner running> name of conatiner or id(first3 digit)
 
+#to remove image from os
+docker rmi centos<image_name> --f
+
 #to use tag name when container running
 docker run -it  --name new_name centos<image name>
 
@@ -45,3 +50,9 @@ lscpu
 #to check docker information and docker help for uses of commands
 docker info
 docker --help
+
+
+#troubleshoot----if launching time some error come up the use
+#of selinux 
+getenforce 
+setenforce 0
