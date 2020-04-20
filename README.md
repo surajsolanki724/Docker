@@ -25,6 +25,19 @@ answer : think about it
 6. 1 sec to boot and install and login ....this amazing beauty of docker 
 7. ...
 
+# content
+docker installation 
+docker images
+docker container
+docker registry
+dockder customize image building
+docker networking
+docker volume
+docker enviroment varible
+dockerfile
+docker compose
+docker multi tier architecture...project
+
 
 
 
