@@ -1,0 +1,33 @@
+#how to see live logs from webserver
+docker container run -dit nginx
+
+#how to going inside the container without intractive shell
+docker container attach container_id
+
+#and then going to other terminal and  see this container ip adress and put into web browser and see logs 
+docker container inspect container_id| grep IPAdress
+
+# if you want to kill container its kill forcefully but if you want stop when its stop your container polite ways
+docker container kill container_id
+
+#if you want to wait when will container stop
+docker container wait container_id
+
+#it show us container status 0 when stop
+#go other terminal and stop this container 
+docker container stop container_id
+
+#if you want to pause container servicess and unpause
+docker container pause container_id
+
+docker container ls # to check 
+#to unpause container 
+docker container unpause container _id
+
+# if your requirement is to delete all container
+docker container prune -f
+
+# if want see your container port mapping  it shows you about maping port
+docker container port container_name or container_id
+
+
