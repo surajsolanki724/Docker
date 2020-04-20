@@ -1,0 +1,25 @@
+#pull image from docker hub....pull any image like ubuntu,redis,mysql,centos,mongo
+docker pull centos:8 <image_name:version>
+
+#to check image
+docker image
+
+#to run container using image 
+docker run -t < it give u terminal> -i<interactive shell> centos:latest <imagename:version name>
+
+#to check container running
+docker ps
+
+#to exit from container or shutdown container
+exit
+
+# to run caontainer in background 
+docker run -d<daemon background dettach> -it centos<by default latest>
+
+#to check basesystem ram and cpu how much consume by docker u seen very less memory and very less resources docker consume
+free -ml
+lscpu
+
+#to check docker information and docker help for uses of commands
+docker info
+docker --help
