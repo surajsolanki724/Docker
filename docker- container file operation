@@ -1,0 +1,39 @@
+#if you want to only create container and give command if you want...
+#here is  not run whwnver you run container then it pull image and then start container 
+docker container create image_name command<any commands>
+
+#to statrt container use
+docker container start container_id 
+
+#if you want to see your chnages in your container file system  C mean crete , A mean add, D mean delete 
+docker container diff container_id
+
+# if you want copy file from one to other
+docker container cp file/  other_container_id:/path
+
+
+#if you want share your customize container to other guys or team 
+docker container -it centos /bin/bash
+
+#install software customize it
+yum install software_name
+yum install tree git -y
+
+#lets out this running container use"control+p+q"
+to check docker container ls
+
+#and then export some tar file of your cutomize container
+docker container export container_id > new_name.tar
+docker container export container_id -o <output_save> new_name_container.tar
+ls -lh #to check tar file
+
+#if you give your other team and import as a image and save one image in host machine
+docker image import name_name_container.tar  new_name_image
+docker image ls
+
+#then you run your cusomize container and use shell
+docker container run -it image_name /bin/bash
+
+
+
+
