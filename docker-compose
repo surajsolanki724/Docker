@@ -1,0 +1,26 @@
+# so guys docker compose use for infrastructure setup one click infra up and one click infra down
+#its beauty of docker 
+#its very useful our industry ....one click setup all requirement
+#you have to write yml systax with docker-compose file
+#so this we cretae a multi tier architecture for use in the industry a lot
+
+#fisrt pull wordpress image for frontend 
+#second pull database server for bakend storage of website 
+
+docker pull wordpress:5.1.1-php7.3-apache
+docker pull mysql:5.7
+
+#if your requirement to store some environment varible in the docker container 
+x=5
+docker run -e<environment_variable> x=$x -it centos
+
+# so if you use databse server then you need database client server install mysql for your host machine
+yum install mysql
+mysql -h<host_container_ip> ip -u<user> root -p<password> # to connect mysql server
+
+#to chjeck end point
+docker history mysql:5.7
+
+#launch mysql database server with client login
+docker container run -e<env_varible> MYSQL_ROOT_PASSWORD=<password> 
+-e MYSQL_USER=username -e MYSQL_PASSWORD=passwrod -e MYSQL_DATABASES=mydb mysql:5.7
