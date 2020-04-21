@@ -1,0 +1,13 @@
+#if you upload your customize image to docker registry then
+#first you have to make docker.hub id through docker hub website then
+docker login 
+docker password
+
+#docker run command run first locally and then image not found then go to docker hub
+
+#push your docker image to registry
+docker tag webserver:v1 <image_name:version> nameof_user_id/image_name
+docker push user_id_name/image_name
+
+#if you want to pull
+docker run -it user_id/webserver:v1
