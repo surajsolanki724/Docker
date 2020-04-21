@@ -9,6 +9,7 @@ docker container run -it --name web_new -v<volume_bind> mystorage:/var/www/html 
 docker rm -f webserver 
 
 #if attach that storage to other webserver container the its running good and data will remain same
+#if you dont create storate then automatic create and attach
 docker container -it --name websever2 -v mystorae:/var/www/html webserver:v1
 
 #to see docker storage
@@ -19,4 +20,21 @@ cd /var/lib/docker/volume
 #if your requierement is you attach your host yum to docker yum the do it attach rhel dvd to docker container
 
 docker run -it --name container_new -v /run/media/root/rhel8.0-baseos :/dvd centos:latest
+
+#u want to delete docker volume
+
+docker volume rm volume_name
+docker vloume prune #detele all unused vloume
+
+#if you want centralize shared data folder
+vm shared folder attach
+
+#if u want to bind folder
+mkdir bind
+vi index.html
+save and exit
+pwd
+
+docker container run -it -v /home/suraj/bind:/temp/test/  centos:version
+
 
