@@ -17,6 +17,16 @@ ls -lh #to check tar file
 docker image import name_test_container.tar  new_name_image
 docker image ls
 
+# if your rquierment is to send customize image to other team vi network
+docker container run -itd --name webserver:v1<new_container_name:version> nginx
+
+#install some software and then
+docker save container_name:version -o<output> web.tar
+scp web.tar root@remote_ip:/root
+
+#other one load docker container as a image
+docker load -i<input> web.tar
+
 #then you run your cusomize container and use shell
 docker container run -it image_name /bin/bash
 
