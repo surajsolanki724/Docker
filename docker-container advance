@@ -29,7 +29,7 @@ docker container rename container_id new_ciontainer_name
 #if you want restart your container 
 docker container restart container_id
 
+# if you want remove all container
+docker container rm -f $(docker container ls -a -q)
 
-
-
-docker container -p 
+ 
