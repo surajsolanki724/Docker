@@ -1,0 +1,72 @@
+#if you want create your own virtual network --in this network you create your container ---even different network different container 
+#by default docker support 3 networks 1. is bridge network 2. host network 3. is null
+
+#if you attach your container to bridge or host by default bridge connected
+
+docker container run -it --network bridge image_name:version
+#  want to see real time logs
+docker logs -f container_name
+
+#want run command in container  then exit from container---it is very fast
+docker cotainer exec container_id command<any command>
+
+# to see network list
+docker network ls
+
+#to info more about the network
+docker network inspect bridge<network_name>
+
+#how to create own lab
+#first create own network
+docker network --help
+docker network create --driver brridge net1<network_name>
+docker network inspect net1
+
+#cerate own network container
+docker container run -dit --name container_name --network net1 centos:latest<image_name:version>
+
+#note:by default in bridge network dont ping by the name they dont update IPAM or DNS 
+#like ping ip or name
+
+#if you want to enable linking 
+docker container run -it --link container_1 --name new_container centos:version
+#now ping container its working
+
+#if you want to create no network 
+docker container run -it --network none --name new_container _name centos:version
+#then see no network avaible in this container
+
+#if you want to disconnect container network
+docker network disconnect net1<network_name> container_name
+
+#connect to different network
+docker network connect new_network container_name
+
+#if you want to make php container
+docker run -it --name webserver centos: version
+'''yum install nettools
+yum install httpd php -y
+cd /var/www/html/
+vi index.php
+<pre>
+<?php
+print("hello php");
+print'date';
+print 'ifconfig';
+print("\n")
+?>
+</pre>'''
+to save index.php
+
+
+
+
+
+
+
+
+
+
+
+
+
