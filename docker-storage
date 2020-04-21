@@ -1,0 +1,22 @@
+#guys if your requirement is persistant storage ....by default docker not store files persistant its called ephemaral storage
+#how to create storage in docker 
+docker volume create mystorage
+
+#if attach your container to that storage 
+docker container run -it --name web_new -v<volume_bind> mystorage:/var/www/html webserver:v1
+
+#and if you do any change in this html file then delete this container...but your data is saved persistant 
+docker rm -f webserver 
+
+#if attach that storage to other webserver container the its running good and data will remain same
+docker container -it --name websever2 -v mystorae:/var/www/html webserver:v1
+
+#to see docker storage
+docker volume inspect mystorage
+
+cd /var/lib/docker/volume
+
+#if your requierement is you attach your host yum to docker yum the do it attach rhel dvd to docker container
+
+docker run -it --name container_new -v /run/media/root/rhel8.0-baseos :/dvd centos:latest
+
