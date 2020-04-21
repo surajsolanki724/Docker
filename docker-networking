@@ -3,6 +3,19 @@
 
 #if you attach your container to bridge or host by default bridge connected
 
+docker container run -it nginx
+#it is not connected outside the hostmachine
+docker container run -itd -P nginx  #here P is work as port maper 
+docker container ls #to check port maping
+
+#want to create a network
+docker network create -d bridge mynet<network_name>
+docker network ls # to check network
+
+#to check all nic card host machine 
+ip a
+
+
 docker container run -it --network bridge image_name:version
 #  want to see real time logs
 docker logs -f container_name
@@ -22,11 +35,19 @@ docker network --help
 docker network create --driver brridge net1<network_name>
 docker network inspect net1
 
+#if you try to create host driver then u cant create this fisrt delete host then create new host driver
+
+#if you want to run container without network
+docker container run -it --network=null centos
+
 #cerate own network container
 docker container run -dit --name container_name --network net1 centos:latest<image_name:version>
 
 #note:by default in bridge network dont ping by the name they dont update IPAM or DNS 
 #like ping ip or name
+
+#if you use host driver then your container is isolate but network is not isolated network is pupblically accessible
+docker container -it --netwrok=host centos
 
 #if you want to enable linking 
 docker container run -it --link container_1 --name new_container centos:version
@@ -73,6 +94,7 @@ docker run -it phpweb:v1
 
 
 #how to configure DNS and then ping by name
+#if you create custome netwrok thwn dns already enable 
 
 docker run -dit --name webserver1 --network-alias site_name --network net1<own_network> phpweb:v1
 
@@ -95,6 +117,13 @@ ifconfig #to check ip
 Iptables -nVL
 Iptables -P FORWARD ACCEPT
 netstat -tnlp
+
+
+#if you want delete network
+docker network rm network_name
+
+#if you want to delete all unused network 
+docker network prun
 
 
 
