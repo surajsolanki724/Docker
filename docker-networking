@@ -55,11 +55,46 @@ print'date';
 print 'ifconfig';
 print("\n")
 ?>
-</pre>'''
-to save index.php
+</pre>
+to save index.php'''
+# systemctl start https does not work on docker inside thats why we use that command 
+#then start http servicess
+/usr/sbin/httpd
+#make it permanant open .bashrc file and add this line here
+'''vi root/.bashrc
+rm -rf /var/run/httpd/*
+/usr/sbin/httpd'''
+
+#then make a customize image this php container and its a image of php if you like to run it again then run
+docker commit webserver phpweb:v1
+
+#run php container
+docker run -it phpweb:v1
 
 
+#how to configure DNS and then ping by name
 
+docker run -dit --name webserver1 --network-alias site_name --network net1<own_network> phpweb:v1
+
+#if you see container info or network info
+docker inspect webserver1
+docker network inspect net1
+
+#if you see docker kernel name
+rpm -q kernel
+rpm -qa | grep kernel
+uname -r #here you see exactly same kernel of host os
+free -m #exectly sam RAM
+
+
+# to expose your container outside in public then use host network
+docker container run -it --network host webserver:v1<webserver installed ifconfig already>
+ifconfig #to check ip
+
+#use iptable to portforwarding
+Iptables -nVL
+Iptables -P FORWARD ACCEPT
+netstat -tnlp
 
 
 
