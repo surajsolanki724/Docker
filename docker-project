@@ -1,0 +1,90 @@
+#we make a project multi tier application running on the single host machine 
+#like wordpress for client and database for mysql server and other one is host server all running one click 
+#in this project we use docker compose 
+#it is very powerfull and one click infrastructure up and down ----know as infrastructure as a code and docker  work as same
+#and very easily manage by user , we create lots of container and running database server so thats why we use it.
+#first we need to install docker compose
+
+yum curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+chmod +x /usr/local/bin/docker-compose
+
+docker-compose --version
+
+
+############ start project ###########
+############# multi tier architecture#################
+##########create docker compose file or called as a work space############
+
+mkdir /myproject
+cd /myproject
+vim docker-compose.yml
+'''
+version: '3'
+services:
+
+    database_os:
+        image:  mysql:5.7
+        volumes:
+              - mysql_storage:/var/lib/mysql
+        restart:  always
+        environment:
+              MYSQL_ROOT_PASSWORD: rootpass
+              MYSQL_USER: suraj
+              MYSQL_PASSWORD: redhat
+              MYSQL_DATABASE: mydatabase
+              
+    wordpress_os:         
+        image:  wordpress:5.1.1-php7.3-apache
+        restart:  always
+        depends_on:
+                - database_os
+        ports:
+                -8081:80
+        environment:
+              WORDPRESS_DB_HOST : database_os
+              WORDPRESS_DB_USER  :suraj
+              WORDPRESS_DB_PASSWORD : redhat
+              WORDPRESS_DB_NAME : mydatabase
+        volumes:
+              -mywp_storage:/var/www/html
+ volumes:
+      mysql_storage
+      mywp_storage
+      
+              
+  '''
+  
+  #now run this compose file 
+  docker-compose up -d<if background>
+  docker ps
+  
+  #now access wordpress to outside world
+  
+  #one click all the infra down
+  docker-compose down
+  
+  #destroy infra
+  docker-compose stop
+  docker-compose rm
+  docker ps     
+
+#if your yml file name is different the'
+docker-compose -f<file> docker-compose2.yml<new_file_name> up -d
+#dont mendatory to write code in yml use json as well 
+          
+          
+          
+          
+          
+          
+          
+ 
+       
+       
+       
+       
+       
+       
+       
+       
