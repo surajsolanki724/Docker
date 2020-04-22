@@ -13,8 +13,8 @@ docker-compose --version
 
 
 ############ start project ###########
-############# multi tier architecture#################
-##########create docker compose file or called as a work space############
+############# multi tier architecture with wordpress + mysql database server#################
+##########create docker compose file or called in work space############
 
 mkdir /myproject
 cd /myproject
