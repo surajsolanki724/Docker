@@ -63,20 +63,144 @@ services:
   
   #one click all the infra down
   docker-compose down
-  
-  #destroy infra
-  docker-compose stop
-  docker-compose rm
-  docker ps     
 
 #if your yml file name is different the'
 docker-compose -f<file> docker-compose2.yml<new_file_name> up -d
 #dont mendatory to write code in yml use json as well 
           
+#if you want create container only not run  no network create the
+docker-compose create
+
+#if you want create network as well
+docker-compos up --no-start
+
+#here create ,stop,rm,start dont intruppt network services
+#you want stop running container
+docker-compose stop 
+#remove container
+docker-compose rm
+#again start container
+ docker-compose start
+ 
+ #you want to pause your infrastructure and chnged it then unpaused it
+ docker-compose pause
+ docker-compose ps
+ docker-compose unpause
+ 
+ 
+ #if you want to kill container
+ docker-compose kill
+ 
+ #for help
+ docker-compose help
+ 
+ #if you want to se exposes port of container
+ docker-compose port container_name port_name
+ 
+ #if want to see logs live
+ docker-compose logs -f     #and go to web browser and access webserver it give you live logs
+ 
+ #if you want run command in container then out 
+ docker-compose exec container_name  command_name
+ 
+ docker-compose run container_name command_name        this command create new container and running command then out
+ docker-compose restart     #simply restart infra
+ 
+ #################if your requirement is to scale up container######################here you use load balance and dns 
+ docker-compose scale container_name =5 conatiner_name2=4 
+ 
+ docker-compose top # it give you running container services
+ 
+ #if you want to pull image 
+ docker-compose pull
           
-          
-          
-          
+          ############################# project 2 ##################
+# we assume that python developer create a project on anything and then setup the project enviroment
+#python_project.py alredy exist
+
+#we need to create dockerfile becoz of our requirement is when the project file run
+''''
+FROM python:3.7    <if you want it directally then use this>
+ARG PYTHON_VERSION    #here the arg refere to docker-compose file
+FROM python:$PYTHON_VERSION    #here you pull this image 
+ADD  . /code
+WORKDIR  /code
+RUN pip install -r requirement.txt                                    #here requirement.txt is file that contain module name which required in pyhton poroject
+CMD  ["python", "python_project.py"]                                   #flask , redis 2 module use in python 
+''''
+
+
+#we need to docker-compose file
+#we need build our nginx webserver
+'''
+version: '3'
+services:
+     webserver:
+            build:   <"build: .">    #if your docker file is persent worjking directory 
+                context:  . <where is your dockerfile>
+                dockerfile: dockerfile <name of dockerfile>
+                args:
+                    - PYTHON_VERSION=3.7-alphine
+            image : python-redis-1   <new_image_name>
+            ports:
+                - "5000:5000"
+            image: 'surajsolanki/mypythonimage:version'  <image tag>   <if you want to give tag then use this>
+     redis:
+            image: "redis:alpine"
+            
+
+'''
+
+#run this file
+docker-compose up
+#access browser with port number
+
+###########################here if you want to launch container different network then use it#######################
+
+'''
+version: '3'
+services:
+     webserver:
+            build:   
+                context: .
+                dockerfile: dockerfile <name of dockerfile>
+                args:
+                    - PYTHON_VERSION=3.7-alphine
+            image : surajsolanki/python-redis <new_image_tag>
+            ports:
+                - "5000:5000"   
+            networks:
+                -appnetwork  
+                
+      redis_server1:
+             image: "redis:alpine"
+             volumes:
+                  - myredisdata:/data
+             networks:
+                  - appnetwork
+       redis_server1:
+             image: "redis:alpine"
+             volumes:
+                  - myredisdata2:/data
+             networks:
+                  - appnetwork2        
+               
+networks:
+    appnetredis:
+    appnetredis2:
+volumes:
+    myredisdata
+    myredisdata2
+    
+'''
+        
+ #run this architechture
+ 
+ docker-compose up -d    #here we go the huge infra build one click so fast
+ 
+ 
+ ##########################################thankyou###############################3
+
           
           
  
