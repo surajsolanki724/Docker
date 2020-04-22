@@ -1,1 +1,69 @@
+#so guys till now we build image by exist image or build container by exist image but now we create our 
+#docker image or container by using dockerfile becouse it provide us to speed or flexibility 
+#its a script procedure type 
 
+mkdir Dockerfiles<folder_name>
+cd Dockerfiles
+vi Dockerfile <its by default docker search here if you want to this name >
+
+'''
+FROM image_name:version
+'''
+
+#then run docker file its bulid image for you
+docker image build -t new_image_name:version    # you see both images id is same becoz file structure not changes
+docker image ls  # to list images
+
+#build container
+docker container run -it image:version
+
+#again update docker file and add your requirement 
+vi Dockerfile <its by default docker search here if you want to this name >
+
+'''
+FROM image_name:version   <here you write your base image name >
+RUN yum update && yum install net-tools -y  <here you install any software>
+RUN touch /tmp/1.txt    # all line containes different layer
+RUN touch /tmp/2.txt   #see your layer its update
+ #if you modify docker file then alsways add in below
+'''
+#again build image the see layared architecture
+docker image build -t new_image_name:version 
+
+#if you want to give label,workdir, env varible
+'''
+FROM image_name:version   <here you write your base image name >
+'''
+LABEL name= "<user name>"   # label for maintainer name email
+LABEL email= "<email>"     # its show in docker container inspect container_id | less
+'''
+ENV NAME <name>             #here you pass env varieble  to see them type "env"
+ENV PASS <password
+'''
+RUN pwd > /tmp/pwd.txt      #here you give any commands
+RUN cd /tmp/
+RUN pwd >/tmp/pwd1.txt      #here it is not chnge pwd give same output becoz of layered architecture
+'''
+WORKDIR /tmp
+RUN  pwd >/tmp/pwd3.txt       #here it chnge
+
+'''
+RUN apt-get update && apt-get install -y openssh-server  && apt-get install -y python   #here you give software name nd its install building time
+'''
+RUN usradd -d /home/suraj -g root -G sudo -m -p $(echo "$PASS"  | openssl passwd -l -stdin) $NAME
+RUN woami > /tmp/woami1.txt
+USER $NAME                                  #if you want to switch user
+RUN woami >/tmp/woami2.txt
+
+'''
+RUN mkdir -p<ifnot present then create> /tmp/project      #make directory in docker container and copy foder to containert
+COPY <host_test_folder> /tmp/project/
+'''
+ADD test_project<folder_host_machine> /tmp/project/      #copy one to other
+'''
+
+
+
+
+
+'''
