@@ -14,21 +14,24 @@ docker-compose --version
 
 ############ start project ###########
 ############# multi tier architecture with wordpress + mysql database server#################
+########$$$$##cretaed same network + new storage #########$$#$$
 ##########create docker compose file or called in work space############
 
 mkdir /myproject
 cd /myproject
 vim docker-compose.yml
 '''
-version: '3'
-services:
+version: '3'    # this is a docker-compose version which is installed
+services:       # docker containers Running in service 
 
-    database_os:
-        image:  mysql:5.7
+    database_os:                      #container name
+        image:  mysql:5.7              #image name
         volumes:
-              - mysql_storage:/var/lib/mysql
+              - mysql_storage:/var/lib/mysql       #bind mount storage folder
         restart:  always
-        environment:
+        networks:
+               - my_new_network
+        environment:                          # here is all are entrypoint 
               MYSQL_ROOT_PASSWORD: rootpass
               MYSQL_USER: suraj
               MYSQL_PASSWORD: redhat
@@ -37,20 +40,24 @@ services:
     wordpress_os:         
         image:  wordpress:5.1.1-php7.3-apache
         restart:  always
-        depends_on:
+        depends_on:                    #here wordpress depends on database server
                 - database_os
-        ports:
-                -8081:80
+        ports: 
+                -8081:80                 #here we expose webserver port to outside world
         environment:
               WORDPRESS_DB_HOST : database_os
               WORDPRESS_DB_USER  :suraj
               WORDPRESS_DB_PASSWORD : redhat
               WORDPRESS_DB_NAME : mydatabase
+        networks:
+               -my_new_network
         volumes:
               -mywp_storage:/var/www/html
- volumes:
+ volumes:                                 # create volumes
       mysql_storage
       mywp_storage
+ networks: 
+      my_new_network
       
               
   '''
