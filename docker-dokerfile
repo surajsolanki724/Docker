@@ -57,10 +57,53 @@ RUN woami >/tmp/woami2.txt
 
 '''
 RUN mkdir -p<ifnot present then create> /tmp/project      #make directory in docker container and copy foder to containert
-COPY <host_test_folder> /tmp/project/
+COPY <host_test_folder> /tmp/project/                     #copy only copy the file 
 '''
-ADD test_project<folder_host_machine> /tmp/project/      #copy one to other
+ADD test_project<folder_host_machine> /tmp/project/      #add  comanad copy nd extract as well
 '''
+
+CMD ["linux_command"]     #here you give any command which is run when container bulid
+''''
+#ssh container
+RUN  apt-get install -y openssh-server 
+RUN usradd -d /home/suraj -g root -G sudo -m -p $(echo "$PASS"  | openssl passwd -l -stdin) $NAME
+RUN ["/usr/sbin/sshd", *.D"]
+EXPOSE 22 80    # multiple port expose 
+
+'''
+#then run docker file its bulid image for you
+docker image build -t new_image_name:version 
+docker container run -it image:version
+
+ssh user_name@ip_hostmachine -p port_number
+
+#if you want to add entry point and run commmand whenevrer container run
+'''
+ENTRYPOINT  ["tree"]
+CMD  ["--version"]
+''''
+#####if you want to running shell script in your container whenevr he run
+
+vi test.py
+print("hello cintainer")
+vi test.sh
+echo "hello container"
+echo "i am here $1<if you have argument>" 
+
+
+# open dockerfile add
+COPY tes.sh /tmp/
+ENTRYPOINT ["/tmp/test.sh"]
+
+#then run docker file its bulid image for you
+docker image build -t new_image_name:version 
+docker container run -it image:version <argumet>
+
+output: hello container            #if your requirement is run my scirpt then run msql container import export data before container running
+i am here <argument>     
+
+
+
 
 
 
