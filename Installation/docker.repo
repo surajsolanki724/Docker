@@ -1,6 +1,3 @@
-cd /etc/yum.repos.d
-vim docker.repo
-
 [dvd]
 baseurl=file:///run/media/root/RHEL-8-0-0-BaseOS-x86_64/AppStream
 gpgcheck=0
