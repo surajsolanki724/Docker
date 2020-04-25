@@ -5,11 +5,11 @@ vim docker.repo
 baseurl=file:///run/media/root/RHEL-8-0-0-BaseOS-x86_64/AppStream
 gpgcheck=0
 
-[dvd]
+[dvd1]
 baseurl=file:///run/media/root/RHEL-8-0-0-BaseOS-x86_64/BaseOS
 gpgcheck=0
 
-[docker_repo]
+[docker]
 baseurl=https://download.docker.com/linux/centos/7/x86_64/stable/
 gpgcheck=0
 
