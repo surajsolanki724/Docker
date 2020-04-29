@@ -21,15 +21,14 @@ Use docker pull wordpress:5.1.1-php7.2-apache to download the wordpress Image in
 To know more about wordpress Image go to this page: https://hub.docker.com/_/wordpress
 
 # Setting up MySQL:
-Use docker run -it -e MYSQL_ROOT_PASSWORD=(any password you like) -e MYSQL_USER=(any user name) -e MYSQL_PASSWORD=(any password(recommended not to use root password) -e MYSQL_DATABASE=(any database name) --name joomladb mysql:5.6 this code and it will create a user with a database inside Your MySQL Server.
+Use docker run -it -e MYSQL_ROOT_PASSWORD=(any password you like) -e MYSQL_USER=(any user name) -e MYSQL_PASSWORD=(any password(recommended not to use root password) -e MYSQL_DATABASE=(any database name) --name database_os mysql:5.6 this code and it will create a user with a database inside Your MySQL Server.
 
--- Now if you want to see is your database created or not then you have to install MySQL cilent software in your base OS. For that use yum install mysql. Next thing check your database server ip address and use that ip while running the client software. For reference check the image below.
+-- Now if you want to see is your database created or not then you have to install MySQL cilent software in your base OS. For that use yum install mysql. Next thing check your database server ip address and use that ip while running the client software.
 
 # Docker-Compose:
 
 Before using Docker-Compose you should install the software. For reference go to this website : https://docs.docker.com/compose/install/
 You can create and edit this file using vim editor. For that use vim docker-compose.yml. Remember the file name should always be docker-compose.yml.
-In the below picture you can see the composed file. Let me tell you how it's done.
 
 # Version:
 In each version the style and syntax are different. I used version 3 cause it's easy to compose than other versions.
@@ -79,3 +78,4 @@ Next problem might happen after you setup your MySQL you up your docker compose 
 This command will remove all the previous containers. Otherwise you can also use $ docker ps -a to see which container is running on MySQL server and you can remove that particular container using $ docker rm (container id).
 
 Next problem might happen like your wordpress is unable to connect to database server. It's probably because your iptables doesn't get updated as soon as you do the previously mentioned action. So final and last solution is that you should at first remove the containers create previously by docker compose and then restart your docker using $ systemctl restart docker and now you just up the docker-compose and it will work fine.
+thankyou ...hope you liked it!!
