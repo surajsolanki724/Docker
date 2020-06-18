@@ -1,12 +1,13 @@
 # Docker
 Docker based project which is basically contribute to our industry automation ,testing field.
 
-# Starting With Q n A
+##Starting With Q n A
 
-1. why we need docker?
+
+`1. why we need docker?
 answer: docker is basically a conatiner technology which is provide us to a feel like we work on original os. its really very cool and light weight os. it does not comsume high RAM and CPU.
 when our requirment is application testing , building and destroy so many time in very less time then docker is main role play.
-but if we use virtual machine this is not possible 
+but if we use virtual machine this is not possible `
 
 2. why is difference between docker and virtualiization?
 answer : Docker is container based technology and containers are just user space of the operating system. At the low level, a container is just a set of processes that are isolated from the rest of the system, running from a distinct image that provides all files necessary to support the processes. It is built for running applications. In Docker, the containers running share the host OS kernel.
